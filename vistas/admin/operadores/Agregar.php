@@ -1,6 +1,5 @@
 <?php
     include('../../configuraciones/conexion.php');
-
     $titulo = 'Agregar Operador';
 
     $headAdicional = '<script type="text/javascript" src="/tienda/recursos/js/operadores.js?1.1"></script>';
@@ -43,19 +42,12 @@
         if (isset($_POST['enviar'])) {
 
          $nombre = strtoupper(mysqli_real_escape_string($conn,(empty($_POST['nombre_operador'])? null: $_POST['nombre_operador'])));
-
          $apellido = strtoupper(mysqli_real_escape_string($conn,(empty($_POST['apellidos_operador'])? null: $_POST['apellidos_operador'])));
-
          $fecha = mysqli_real_escape_string($conn,(empty($_POST['fecha'])? null: $_POST['fecha']));
-
          $genero = strtoupper(mysqli_real_escape_string($conn,(empty($_POST['genero'])? null: $_POST['genero'])));
-
          $ciudad = strtoupper(mysqli_real_escape_string($conn,(empty($_POST['ciudad'])? null: $_POST['ciudad'])));
-
          $numero = mysqli_real_escape_string($conn,(empty($_POST['telefono'])? null: $_POST['telefono'])); 
-
          $email = mysqli_real_escape_string($conn,(empty($_POST['correo'])? null: $_POST['correo']));  
-         
          $contraseña = mysqli_real_escape_string($conn,(empty($_POST['contraseña'])? null: $_POST['contraseña'])); 
 
             $sql = "INSERT INTO USUARIOS(CORREO, NOM_USUARIO, AP_USUARIO,TELEFONO,TIPO,CONTRASENA,GENERO,FECHA_NAC,CIUDAD)VALUES
