@@ -58,7 +58,8 @@
 
     <?php include('../modelo/general/head.php'); ?>
     <link rel="stylesheet" href="/tienda/recursos/css/cliente.css?1.1" />
-    <script src="/tienda/recursos/js/cliente.js?1.2"></script>    
+    <script src="/tienda/recursos/js/validaciones.js?1.4"></script>   
+    <script src="/tienda/recursos/js/cliente.js?1.4"></script>    
 
 </head>
 
@@ -187,6 +188,12 @@
 
                         <?php if($carro!=null): ?>    
 
+                            <div class="text-danger " id="error" role="alert">
+                                        
+                                <?php echo htmlspecialchars((isset($errores))? $errores:''); ?>
+                                        
+                            </div>
+
                             <div class="table-responsive">
                             
                                 <table class="table text-center">
@@ -273,8 +280,11 @@
 
                                 <h4 class="text-right"> <?php echo ((isset($total))? 'TOTAL: '.$total: ''); ?> </h4>
                                     
-                                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+                                <form class="form-group" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
 
+                                    <input type="hidden" name="pedido" value="<?php echo $carro[0]['pedido']; ?>" />
+
+                                    <input class="form-control" type="text" id="direccion" name="direccion" value="" placeholder="Dirección" />
                                     <input type="submit" class="btn btn-success btn-block" name='comprar' value="Comprar"/>
 
                                 </form>
@@ -293,6 +303,12 @@
 
                     <div class="card mb-4 p-4 box-shadow">
 
+                        <div class="text-danger " id="error" role="alert">
+                                        
+                            <?php echo htmlspecialchars((isset($errores))? $errores:''); ?>
+                                    
+                        </div>
+
                         <div class="row">
 
                             <div class="col-md-4">
@@ -309,11 +325,10 @@
                                 <h3> <?php echo ((isset($datos['precio']))? '$'.$datos['precio']:'Proximamente'); ?> </h3>
                                 <p> <?php echo ((isset($datos['descripcion']))? $datos['descripcion']:'Sin descripcion'); ?> </p>
                                 
-                                <form class="form-group" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method='POST'>
+                                <div class="form-group">
 
-                                    <input type='hidden' name="productoId" value="<?php echo ((isset($datos['id']))? $datos['id']:''); ?>" />
-                                    <input type="submit" name="carro" class="btn btn-sm btn-success carro text-white m-2" value='Añadir a Carro' />
-
+                                    <a type="sumbit" productoId=<?php echo ((isset($datos['id']))? $datos['id'] : ''); ?> producto class="btn btn-sm btn-success carro text-white agregar">Añadir a Carro</a>
+                                
                                 </form>
 
                             </div>
@@ -331,6 +346,8 @@
                             <div class="col-md-4">
                             
                                 <div class="card mb-4 box-shadow">
+
+
                                     
                                     <img class="card-img-top" src="<?php echo ((isset($producto['imagen']) && $producto['imagen']!='')? $producto['imagen'] : '/tienda/recursos/img/imagenDefecto.png'); ?>" with="100px" alt="No se cargo la imagen">
                                     
