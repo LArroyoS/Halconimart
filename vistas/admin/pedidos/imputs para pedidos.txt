@@ -1,0 +1,176 @@
+
+        $resultado = array(
+
+                array('ID' => '1',
+                        'PRODUCTO' => 'Product1',
+                        'CANTIDAD' => '1',
+                        'PRECIO($)' => '0.00'),
+                array('ID' => '2',
+                        'PRODUCTO' => 'Product2',
+                        'CANTIDAD' => '1',
+                        'PRECIO($)' => '0.00'),
+                array('ID' => '3',
+                        'PRODUCTO' => 'Product3',
+                        'CANTIDAD' => '1',
+                        'PRECIO($)' => '0.00'),
+                array('ID' => '4',
+                        'PRODUCTO' => 'Product4',
+                        'CANTIDAD' => '1',
+                        'PRECIO($)' => '0.00'),
+                array('ID' => '5',
+                        'PRODUCTO' => 'Product5',
+                        'CANTIDAD' => '1',
+                        'PRECIO($)' => '0.00'),
+                array('ID' => '6',
+                        'PRODUCTO' => 'Product6',
+                        'CANTIDAD' => '1',
+                        'PRECIO($)' => '0.00'),
+        
+        );
+
+        $total = 0.0;
+    
+    }
+
+
+
+
+$inputs = array(
+
+            array('type' => 'text',
+                    'id' => 'id',
+                    'placeholder' => 'ID ',
+                    'value' => '#',
+                    'estado' => 'disabled'),
+            array('type' => 'text',
+                    'id' => 'nombre_operador',
+                    'placeholder' => 'NOMBRE OPERADOR',
+                    'value' => 'Proveedor muestra',
+                    'estado' => 'disabled'),
+            array('type' => 'text',
+                    'id' => 'nombre_cliente',
+                    'placeholder' => 'NOMBRE CLIENTE',
+                    'value' => 'Proveedor muestra',
+                    'estado' => 'disabled'),
+            array('type' => 'text',
+                    'id' => 'estado',
+                    'placeholder' => 'ESTADO',
+                    'value' => 'PENDIENTE',
+                    'estado' => 'disabled'),
+            array('type' =>'text',
+                    'id' => 'direccion',
+                    'placeholder' => 'DIRECCION',
+                    'value' => 'DIRECCION 1',
+                    'estado' => 'disabled'),
+            array('type' =>'date',
+                    'id' => 'fecha',
+                    'placeholder' => 'FECHA',
+                    'value' => '02/06/2020',
+                    'estado' => 'disabled'),
+
+        );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------
+MODIFICAR
+-------------------------------
+
+   $titulo = 'Modificar Pedido';
+   $buscar = array(
+
+        'type' => 'text',
+        'id' => 'id',
+        'placeholder' => 'ID Pedido',
+        'value' => '',
+        'estado' => '',
+
+    );
+
+    $inputs = array(
+
+        array('type' => 'select',
+                'id' => 'operador',
+                'placeholder' => 'Ingrese nombre del operador',
+                'estado' => 'disabled',
+                'values' => array(
+                    array('id' => '1',
+                            'nombre' => 'op1'),
+                    array('id' => '2',
+                            'nombre' => 'op2'),
+                    array('id' => '3',
+                            'nombre' => 'op3'),
+                    array('id' => '4',
+                            'nombre' => 'op4'),
+                    ),
+                'value' => ""),
+        array('type' => 'select',
+                'id' => 'estado',
+                'placeholder' => 'Ingrese estado del pedido',
+                'estado' => 'disabled',
+                'values' => array(
+                                array('id' => '1',
+                                        'nombre' => 'pendiente'),
+                                array('id' => '2',
+                                        'nombre' => 'enviado'),
+                                array('id' => '3',
+                                        'nombre' => 'entregado'),
+                                ),
+                'value' => ""),
+    );
+
+    $botonForm = 'Eliminar';
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+
+
+    }
+
+    if(isset($_GET['id'])){
+
+        $consulta = array(
+            'id' => '#',
+            'nombre' => '3',
+            'estado' => '2',
+        );
+
+        $i = 0;
+        foreach($consulta as $valor){
+
+            if($i == 0){
+
+                $buscar['estado'] = 'disabled';
+                $buscar['value'] = $valor;
+
+            }
+            else{
+
+                $inputs[$i-1]['value'] = $valor;
+                $inputs[$i-1]['estado'] = '';
+
+            }
+
+            $i++;
+
+        }
+
+    }
+
+?>
+
+
+
+"SELECT pedidos.ID_PEDIDO AS 'id', pedidos.ID_OPERADOR_FK AS 'operador',
+           pedidos.ESTADO_PEDIDO AS 'estado' FROM pedidos WHERE ID_PEDIDO='$id'"
