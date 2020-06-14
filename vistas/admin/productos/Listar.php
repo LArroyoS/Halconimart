@@ -29,7 +29,34 @@
 
         }
         
+    /*$resultado = array(
+                
+        array('ID' => '1',
+                'PRODUCTO' => 'product1',
+                'CANTIDAD' => '1',
+                'PRECIO' => '0.00',),
+        array('ID' => '1',
+                'PRODUCTO' => 'product2',
+                'CANTIDAD' => '1',
+                'PRECIO' => '0.00',),
+        array('ID' => '1',
+                'PRODUCTO' => 'product3',
+                'CANTIDAD' => '1',
+                'PRECIO' => '0.00',),
+        array('ID' => '1',
+                'PRODUCTO' => 'product4',
+                'CANTIDAD' => '1',
+                'PRECIO' => '0.00',),
+        array('ID' => '1',
+                'PRODUCTO' => 'product5',
+                'CANTIDAD' => '1',
+                'PRECIO' => '0.00',),
+        array('ID' => '1',
+                'PRODUCTO' => 'product6',
+                'CANTIDAD' => '1',
+                'PRECIO' => '0.00',),
 
+    );*/
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 

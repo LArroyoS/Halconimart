@@ -68,7 +68,16 @@
         array('type' => 'select',
                 'id' => 'proveedor',
                 'value' => '',
-                'values' => $listaProveedores, 
+                'values' => $listaProveedores, /*array(
+                                array('id' => '1',
+                                        'nombre' => 'prov1'),
+                                array('id' => '2',
+                                        'nombre' => 'prov2'),
+                                array('id' => '3',
+                                        'nombre' => 'prov3'),
+                                array('id' => '4',
+                                        'nombre' => 'prov4'),
+                                ), */
                 'placeholder' => 'Seleccione un proveedor',
                 'estado' => 'enabled'),
         array('type' => 'select',
@@ -182,7 +191,14 @@
         if(empty($_POST['descripcion'])){
             $errors['descripcion'] = 'La descripcion es requerida <br/>';
         }
-
+       /*if(empty($_POST['almacen'])){
+            $errors['almacen'] = 'Necesita indicar el almacen <br/>';
+        }else{
+            $almacen=$_POST['almacen'];
+            if (!filter_var($almacen, FILTER_VALIDATE_INT)) {
+                $errors['almacen'] = "error en el numero de almacen";
+            }
+        }*/
     
         if (array_filter($errors)) {
             $errores = "hay errores";

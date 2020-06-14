@@ -74,16 +74,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $id_eliminar = $id_eliminar = mysqli_real_escape_string($conn, $_POST['detalle']);
 
-    
-    $sql = "DELETE FROM detalle_pedido WHERE ID_DETALLE = '$id_eliminar'";
+      $sql = "SELECT detalle_pedido.ID_PRODUCTO_FK, productos.ALMACEN
+      FROM detalle_pedido
+      INNER JOIN productos 
+      ON productos.ID_PRODUCTO = detalle_pedido.ID_PRODUCTO_FK 
+      WHERE ID_DETALLE = '$id_eliminar'";
 
-    if (mysqli_query($conn, $sql)) {
-      header('Location: carro.php');
-    } else {
+      $resultado = mysqli_query($conn, $sql);
+      $producto = mysqli_fetch_assoc($resultado);
+      if(!empty($producto)){
 
-      //error
-      $error = 'Ocurrio un error inesperado, no se pudo eliminar el Producto de carrito';
-    }
+        $agregar = $producto['ALMACEN']+1;
+        $producto = $producto['ID_PRODUCTO_FK'];
+        $sql = "UPDATE productos SET ALMACEN = '$agregar' 
+        WHERE  ID_PRODUCTO = '$producto'";
+        $resultado = mysqli_query($conn, $sql);
+
+        $sql = "DELETE FROM detalle_pedido WHERE ID_DETALLE = '$id_eliminar'";
+
+        if (mysqli_query($conn, $sql)) {
+
+          header('Location: carro.php');
+
+        } else {
+
+          $errores = 'Ocurrio un error inesperado, no se pudo eliminar el Producto de carrito';
+          
+        }
+
+      }
+      else{
+
+        $errores = 'Ocurrio un error inesperado, no se pudo eliminar el Producto de carrito';
+
+      }
 
   }
   if (isset($_POST['comprar'])) {
@@ -92,6 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pedido = $carro[0]['pedido'];
     $sql = "UPDATE pedidos SET
           ESTADO_PEDIDO = 'COMPRADO'
+          FECHA_PEDIDO = NOW()
           WHERE ID_PEDIDO = '$pedido' ";
 
     if (mysqli_query($conn, $sql)) {
@@ -104,9 +129,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
   if (isset($_POST['comprar'])) {
-    //$id_comprar = mysqli_real_escape_string($conn, $_POST['id_pedidfo_fk']);
     
-    $sqlcomprar = "UPDATE pedidos SET ESTADO_PEDIDO = 'COMPRADO' WHERE ID_PEDIDO = 1";
+    $direccion = mysqli_real_escape_string($conn, $_POST['direccion']);
+    $pedido = mysqli_real_escape_string($conn, $_POST['pedido']);
+    $sqlcomprar = "UPDATE pedidos SET ESTADO_PEDIDO = 'COMPRADO',
+      DIRECCION = '$direccion'  WHERE ID_PEDIDO = '$pedido'";
 
     if (mysqli_query($conn, $sqlcomprar)) {
       header('Location: index.php');
