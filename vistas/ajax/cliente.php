@@ -37,13 +37,24 @@
             }
 
             $idPed = $pedido["ID_PEDIDO"];
-            $sql = "INSERT INTO detalle_pedido(ID_PEDIDO_FK,ID_PRODUCTO_FK,CANTIDAD) 
-            values('$idPed','$id','1')";
-
+            $sql = "SELECT ALMACEN FROM productos WHERE ID_PRODUCTO = '$id' ";
             $resultado = mysqli_query($conn, $sql);
+            $almacen = mysqli_fetch_assoc($resultado);
+            if (!empty($almacen) && $almacen['ALMACEN']>0) {
+                $descuento = $almacen['ALMACEN']-1;
+                $sql = "UPDATE productos SET ALMACEN=$descuento
+                        WHERE ID_PRODUCTO = '$id'";
 
-            if ($resultado) {
-                $insercion = true;
+                $resultado = mysqli_query($conn, $sql);
+
+                $sql = "INSERT INTO detalle_pedido(ID_PEDIDO_FK,ID_PRODUCTO_FK,CANTIDAD) 
+                    values('$idPed','$id','1')";
+
+                $resultado = mysqli_query($conn, $sql);
+
+                if ($resultado) {
+                    $insercion = true;
+                }
             }
 
         }

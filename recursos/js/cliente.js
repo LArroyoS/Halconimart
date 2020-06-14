@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    alert('hhh');
     $('.agregar').on('click', function () {
 
         var productoId = $(this).attr('productoId');
@@ -21,7 +22,7 @@ $(document).ready(function () {
                     
                     if(resultado!='true'){
 
-                        alert('ocurrio un error inesperado');
+                        alert('producto agotado');
 
                     }
 
@@ -30,6 +31,54 @@ $(document).ready(function () {
             }
 
         });
+
+    });
+
+    //validar formulario
+    $("form").submit(function(e){
+
+        var id = '';
+        var error = '';
+        var texto = '';
+        var valor = '';
+
+        console.log()
+
+        $('form input').each(function(){
+
+            id = $(this).attr('id');
+            valor = $(this).val();
+            switch(id){
+
+                case "direccion":
+
+                    alert('direccion');
+                    if(!validarVacios(valor)){
+
+                        texto = id.replace('_',' ');
+                        error += texto.toUpperCase()+' es requerido<br/>';
+
+                    }
+                    else{
+
+                        if(!validarTexto(valor)){
+
+                            texto = id.replace('_',' ');
+                            error += texto.toUpperCase()+' debe empezar con una letra<br/>';
+
+                        }
+
+                    }
+
+                break;
+
+            }
+
+        });
+
+        $('#error').html(error);
+
+        return ((error=='')? true:false);
 
     });
 
