@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-    alert('hhh');
     $('.agregar').on('click', function () {
 
         var productoId = $(this).attr('productoId');
