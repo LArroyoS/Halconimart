@@ -104,6 +104,12 @@
                                     
                                     <?php if(isset($inputs)): ?>
                                         
+                                        <div class="text-danger " id="error" role="alert">
+                                        
+                                            <?php echo htmlspecialchars((isset($errores))? $errores:''); ?>
+                                        
+                                        </div>
+
                                         <form 
                                             action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>"
                                             method = 'POST' >
