@@ -55,7 +55,11 @@
                         'placeholder' => 'Descripcion',
                         'value' => 'DescripcionM',
                         'estado' => 'disabled'),
-
+                /*array('type' =>'number',
+                        'id' => 'cantidad',
+                        'placeholder' => 'Cantidad',
+                        'value' => '1',
+                        'estado' => 'disabled'),*/
         
         );
 
@@ -83,8 +87,8 @@
         $datoCat = mysqli_fetch_array($result3,MYSQLI_ASSOC);
         $consulta = array(
             'id' => $_GET['id'],            
-            'nombre_proveedor' => $datoProv['NOM_PROVEEDOR'], 
-            'categoria' => $datoCat['NOM_CATEGORIA'], 
+            'nombre_proveedor' => $datoProv['NOM_PROVEEDOR'], //$producto['ID_PROVEEDOR_FK'],
+            'categoria' => $datoCat['NOM_CATEGORIA'], //$producto['ID_CATEGORIA_FK'],
             'producto' => $producto['NOM_PRODUCTO'],
             'precio' => $producto['PRECIO'],
             'descripcion' => $producto['DESCRIPCION'] ,

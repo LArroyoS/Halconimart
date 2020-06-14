@@ -96,7 +96,10 @@ $(document).ready(function() {
                                 $('form input[type="submit"]').prop('disabled', false);
 
                             }
-                            
+                            /*
+                            $('#nombre_categoria').val(json['nombre_categoria']);
+                            $('#descripcion').val(json['descripcion']);
+                            */
                             $('#nombre_producto').val(json['nombre_producto']);
                             $('#descripcion').val(json['descripcion']);
                             $('#precio').val(json['precio']);
