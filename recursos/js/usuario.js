@@ -117,6 +117,7 @@ $(document).ready(function() {
                         error += texto.toUpperCase()+' es requerido<br/>';
 
                     }
+                    
                 break;
 
             }
