@@ -56,11 +56,20 @@
             if($consulta){
 
                 $usuario = mysqli_fetch_assoc($consulta);
-                session_start();
-                $_SESSION["nombre"] = $usuario['NOM_USUARIO'];
-                $_SESSION["tipo"] = $usuario['TIPO'];
-                $_SESSION["id"] = $usuario['ID_USUARIO'];
-                header('Location: ./cliente/index.php');
+
+                if(!empty($usuario) && $usuario['ID_USUARIO']){
+
+                    $_SESSION["nombre"] = $usuario['NOM_USUARIO'];
+                    $_SESSION["tipo"] = $usuario['TIPO'];
+                    $_SESSION["id"] = $usuario['ID_USUARIO'];
+                    //header('Location: ./cliente/index.php');
+
+                }
+                else{
+
+                    $errores = 'El usuario o contraseña no son validos';
+
+                }
 
             }
             else{
