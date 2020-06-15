@@ -59,7 +59,7 @@
     <?php include('../modelo/general/head.php'); ?>
     <link rel="stylesheet" href="/tienda/recursos/css/cliente.css?1.1" />
     <script src="/tienda/recursos/js/validaciones.js?1.4"></script>   
-    <script src="/tienda/recursos/js/cliente.js?1.4"></script>    
+    <script src="/tienda/recursos/js/cliente.js?1.5"></script>    
 
 </head>
 
