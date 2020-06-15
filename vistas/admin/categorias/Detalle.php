@@ -8,17 +8,6 @@
 
     if (isset($_GET['id']) && $conn) {
 
-        /*
-    
-        En el arreglo de input podemos generar automaticamente los inputs en nuestras pantallas
-        type = define el tupo del input, en caso de requerir una lista desplegable(select), defina como tipo select
-        id = define el identificador del elemento, este se replicara en el atributo name del formulario
-        placeholder = es el mensaje de muestra que indica la instruccion a realizar
-        value = el valor del elemento
-        values = es necesario cuando el elemento posee varios posibles valores, como en el caso de radiobuttons y selects
-        estado = define atributos adicionales comunmente usado para desabilitar los componentes
-
-        */
         $id = $_GET['id'];
         $sql = "SELECT 	ID_CATEGORIA AS 'id_categoria', NOM_CATEGORIA AS 'nombre_categoria', DESC_CATEGORIA AS 'descripcion' FROM categorias WHERE ID_CATEGORIA = '$id' ";
         $consulta = mysqli_query($conn,$sql);

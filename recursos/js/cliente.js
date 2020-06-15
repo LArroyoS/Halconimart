@@ -43,7 +43,7 @@ $(document).ready(function () {
 
         console.log()
 
-        $('form input').each(function(){
+        $(this+' input').each(function(){
 
             id = $(this).attr('id');
             valor = $(this).val();
